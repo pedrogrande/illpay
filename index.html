@@ -1,0 +1,414 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<title>I'llPay - Pay what you want for what you want</title>
+<link rel="stylesheet" type="text/css" href="css/bootstrap.css"/>
+<link rel="stylesheet" type="text/css" href="css/font-awesome-ie7.min.css"/>
+<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css"/>
+<link rel="stylesheet" type="text/css" href="css/style.css"/>
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
+<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+<![endif]-->
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.js"></script>
+<noscript> <style> #container{display:none;} </style> </noscript>
+<script> //Code to show and hide the login drop down box.  Depends on topbar.php being included in the body.
+    jQuery(document).ready(function($){
+        $("div.loadingimage").fadeOut("fast",function(){
+            $("#container").fadeIn("fast");
+        })
+        $("span.logoutclick").click(function(){
+            window.location.href = "//illpay.com.au/logout.php";
+        })
+        $("#toplogin span.loginclick").click(function(){
+            $("#loginDrop").fadeIn("fast");
+            $("#blanket").fadeTo("fast",0.5);
+        });
+//        $("span.signupclick").click(function(){
+//            window.location.href = "//illpay.com.au/userspace/signup.php";
+//        })
+        $(".cancellsdrop").click(function(){
+            $("#loginDrop").fadeOut("fast");
+            $("#blanket").fadeOut("fast");
+        });
+        $("html").click(function(){
+            $("#loginDrop").fadeOut("fast");
+            $("#installbox").slideUp("fast");
+            $("#blanket").fadeOut("fast");
+        });
+        $("#toplogin span").click(function(event){
+            event.stopPropagation();
+        });
+        $("#loginDrop").click(function(event){
+            event.stopPropagation();
+        });
+        $("input[name='userforgotpass']").click(function(){
+            window.location="https://illpay.com.au/userspace/lostpassword.php"
+        })
+        $("input[name='vendorforgotpass']").click(function(){
+            window.location="https://illpay.com.au/vendorspace/lostpassword.php"
+        })
+        $(window).resize(function(){
+            $("#container").css({
+                left: ($(window).width() - $('#container').outerWidth())/2+'px',
+                'min-height': $(window).height() - 80
+            })
+            $("#loginDrop").css({ //Locate the login popup box
+                position:'absolute',
+                left: ($("#container").width() - $('#loginDrop').outerWidth())/2,
+                top: ($("#container").height() - $('#loginDrop').outerHeight())/3
+            })
+            $("#installbox").css({//Locate the installer popup box
+                position:'absolute',
+                left: ($("#container").width() - $('#installbox').outerWidth())/2,
+                top: $("#topbar").height()
+            })
+            $("#bottombar").css({
+                width: $(window).width(),
+                left: -($(window).width() - $('#container').outerWidth())/2
+            })
+            $("#blinks").css({
+                'margin-left':($(window).width() - $('#container').outerWidth())/2
+            })
+            $("#bsocial, #bcopyright").css({
+                'right':($(window).width() - $('#container').outerWidth())/2
+            })
+//            $("#blanket").css({
+//                height: ($(document).height())
+//            })
+            $("#blanket").css({"height": $(window).height(),"width": $(window).width(),left: ($("#container").width() - $(window).width())/2});
+            $("#topbar").css({
+                width:$(window).width(),
+                left: -($(window).width() - $('#container').outerWidth())/2
+            })
+            $("div.topsocial").css({"left":($('#container').width())/2 - 30})
+        })
+        
+        $(window).resize();
+        //Run the install our button div and associated code
+        $("div.topnav[title]").click(function(e){
+            e.preventDefault();
+            e.stopPropagation();
+            $("#installbox").slideDown("fast");
+            $("#blanket").fadeTo("fast",0.5);
+        })
+        $("div.topsocial").one('mouseenter',function(){
+            $("div.topsocial > div").fadeIn("fast");
+        })
+        $("div.topsocial > div").mouseleave(function(){
+            $(this).fadeOut("slow",function(){
+                $("div.topsocial").one('mouseenter',function(){
+                    $("div.topsocial > div").fadeIn("fast");
+                })
+            });
+        })
+        $("#installbox").on("click",function(e){ //prevent clicks on the install div from closing the div
+            e.stopPropagation();
+        })
+        $("#installbutton").on("click","a",function(e){
+            e.preventDefault();
+        })
+        
+        $("vendorlogina").click(function(e) {
+            e.preventDefault();
+            if (!document.getElementById("vendorlogindrop")){
+                var vscript = document.createElement('script');
+                vscript.type = 'text/javascript';
+                vscript.src = 'https://illpay.com.au/js/vlogin.js';
+                vscript.id = 'vendorloginscript';
+                var vdiv = document.createElement('div');
+                vdiv.id = 'vendorlogindrop';
+                document.getElementsByName('head')[0].appendChild(vdiv);
+            }
+        })
+        //Stop the bookmarklet from activating if clicked on our page
+        $("a [name=IllPay]").click(function(e){
+            e.preventDefault();
+        })
+        //TODO ajax query to fill the logged in summary table
+        
+    });
+//    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+//    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+//    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+//    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+//    ga('create', 'UA-44687983-1', 'illpay.com.au');
+//    ga('send', 'pageview');
+</script>
+    
+    <!-- <link rel="stylesheet" href="css/index.css"/> -->
+    <script>
+        jQuery(document).ready(function(){
+            $("#lowermailform").submit(function(e){
+                e.preventDefault();
+                $("#maillistsignup").css({left:($("#container").width()-500)/ 2})
+                $("#blanket").fadeTo('fast',0.5);
+                $("#maillistsignup").fadeIn("fast");
+                $("#blanket").one('click',function(){
+                    $(this).fadeOut('fast');
+                    $("#maillistsignup").fadeOut('fast');
+                })
+                $("#maillistsignup").click(function(e){
+                    e.stopPropagation();
+                })
+                $("#maillistsignup input[name='email']").val($(this).children("[name='email']").val());
+            })
+            $("#maillistsignup > form").submit(function(e){
+                e.preventDefault();
+                $.ajax({
+                    type:"POST",
+                    url:"https://illpay.com.au/meta/maillist.php",
+                    data:$(this).serialize(),
+                    success:function(data){
+                        alert(data)
+                    }
+                })
+                $("#blanket").fadeOut('fast');
+                $("#maillistsignup").fadeOut('fast');
+            })
+            $("div.howitworks:first-of-type > button").click(function(){
+                window.location.href="https://illpay.com.au/userspace/signup.php";
+            })
+            $("div.howitworks:last-of-type > button").click(function(){
+                window.location.href="https://illpay.com.au/vendorspace/vendorsignup.php";
+            })
+        })
+        
+        //Embed the intro video via YouTube
+        var tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/player_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+        var player;
+        function onYouTubePlayerAPIReady() {
+            player = new YT.Player('introplayer', {
+            height: '180',
+            width: '320',
+            videoId: 'UDG0fmqE2IM',
+            playerVars:{rel:'0',modestBranding:'0'}
+        });
+    }
+    
+    </script>
+    <script>
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-44687983-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+    </script>
+</head>
+<body>
+    <div id="container">	
+        <div id="topbar">
+            <div id="topgreybit"></div>
+                <div id="topinner">
+                    <div class="slogandiv">
+                        Never pay full price again
+                    </div>
+                    <div id="topnav">
+                        <div class="topnav" onclick="location.href='//illpay.com.au/index.php'">
+                            <img src="https://illpay.com.au/img/house.png"/>
+                            <p>Home</p>
+                        </div>
+                        <div class="topnav" title="Get the Button">
+                            <a class="topnav" title="Drag me onto your bookmarks bar to start making offers" href="javascript: void((function() {if(window.ipay_enabled){ipay_display();}else{var scr = document.createElement('script'); scr.setAttribute('src','//illpay.com.au/widgetty/newoffer-v0.2.php'); scr.setAttribute('type', 'text/javascript');scr.setAttribute('id','ipay_basic'); scr.setAttribute('charset', 'UTF-8'); document.body.appendChild(scr);}})())">
+                                <img src="https://illpay.com.au/img/button-color.png" alt="I'll Pay"/>
+                            </a>
+                            <p>Get the Button</p>
+                        </div>
+                        <div class="topnav" onclick="location.href='//illpay.com.au/showpdf.php?fileref=os'">
+                            <img src="https://illpay.com.au/img/button-bw.png"/>
+                            <p>I'll Pay Story</p>
+                        </div>
+                        <div style="padding-top:5px;" class="topnav" onclick="location.href='mailto:admin@illpay.com.au'">
+                            <img style="height:30px;" src="https://illpay.com.au/img/envelope.png"/>
+                            <p>Contact Us</p>
+                        </div>
+                    </div>
+                    <div class="topsocial">
+                        <img title="Facebook" src="//illpay.com.au/img/social/fbwhite50.png"/><img title="Twitter" src="//illpay.com.au/img/social/twitterbirdsmall.png"/>
+                    <div>
+                        <a href="http://www.facebook.com/illpay" target="_blank">
+                            <img src="https://illpay.com.au/img/social/fbwhite50.png"/>
+                        </a>
+                        <a href="https://twitter.com/ill_pay" target="_blank">
+                            <img src="https://illpay.com.au/img/social/twitterbirdsmall.png"/>
+                        </a> 
+                        <a href="http://www.youtube.com/channel/UCzrm5g2U8vlRLmX0MxxPNnA" target="_blank">
+                            <img src="https://illpay.com.au/img/social/yt-small.png"/>
+                        </a>
+                    </div>
+                </div>
+        
+                <div id="toplogin">
+                    <span class="loginclick">Log In</span> 
+                </div>
+                <div id="blanket">&nbsp;</div>
+                    <div id="loginDrop">
+                        <div id="ldroplogo">
+                            &nbsp;
+                        </div>
+                        <div id="ldropxbutton" class="cancellsdrop" title="Close">
+                            &nbsp;
+                        </div>
+                        <div id="sloginDrop">
+                            <form name="login1" method="post" action="https://illpay.com.au/checklogin.php">
+                                <table class="logintable">
+                                    <tr>
+                                        <th colspan="2" class="logintable">Shopper login</th>
+                                    </tr>
+                                    <tr>
+                                        <td class="logintable">Email:</td>
+                                        <td class="logintable"><input name="username" type="text" class="myusername"></td>
+                                    </tr><tr>
+                                        <td class="logintable">Password:</td>
+                                        <td class="logintable"><input name="password" type="password" class="mypassword"></td>
+                                    </tr><tr>
+                                        <td class="logintable"><input type="submit" name="submit" value="Login"/></td><td class="logintable"><input type="button" name="userforgotpass" value="Forgotten password"/></td>
+                                    </tr><tr>
+                                        <td colspan="2" class="logintable">Not a member yet? <a id="signupclick">Sign Up Now</a></td>
+                                    </tr>
+                                </table>
+                            </form>
+                        </div>
+                        <div id="vloginDrop">
+                            <form name="loginv" method="post" action="https://illpay.com.au/checklogin.php">
+                                <table class="logintable">
+                                    <tr><th colspan="2" class="logintable">Shop Owner login</th></tr>
+                                    <tr>
+                                        <td class="logintable">Email:</td>
+                                        <td class="logintable"><input name="username" type="text" class="myusername"></td>
+                                    </tr><tr>
+                                        <td class="logintable">Password:</td>
+                                        <td class="logintable"><input name="password" type="password" class="mypassword"></td>
+                                    </tr><tr>
+                                        <td class="logintable"><input type="submit" name="submit" value="Login"/></td><td class="logintable"><input type="button" name="vendorforgotpass" value="Forgotten password"/></td>
+                                    </tr>
+                                </table>
+                                <input type="hidden" name="logintype" value="vendor"/>
+                            </form>
+                        </div>
+                    </div>
+                    <div id="regodrop">
+                        &nbsp;
+                    </div>
+                </div>
+            </div>
+    </div>              
+
+<!-- Bottom navigation bar - common to all pages -->
+<div class="container">
+    <div id="bottombar">
+        <div id="blinks"><a class="botnav" href="//illpay.com.au/showpdf.php?fileref=os">About I'll Pay</a> | <a class="botnav" href="//illpay.com.au/privacy.php">Privacy Policy</a> | <a class="botnav" href="//illpay.com.au/showpdf.php?fileref=fs">Fee Schedule</a> | <a class="botnav" href="//illpay.com.au/showpdf.php?fileref=tc">Terms of use</a></div>
+        <div id="bcopyright">Copyright 2012-2013 I'll Pay Pty Ltd  All Rights Reserved</div>
+        <div id="bsocial">&nbsp;</div>
+    </div>
+</div>
+<div id="installbox">
+    <div id="installbutton">
+        <a name="IllPay" title="Drag me onto your bookmarks bar to start making offers" href="javascript: void((function() {if(window.ipay_enabled){ipay_display();}else{var scr = document.createElement('script'); scr.setAttribute('src','//illpay.com.au/widgetty/newoffer-v0.2.php'); scr.setAttribute('type', 'text/javascript');scr.setAttribute('id','ipay_basic'); scr.setAttribute('charset', 'UTF-8'); document.body.appendChild(scr);}})())">
+            <img src="//illpay.com.au/img/illpay1.jpg" alt="I'll Pay"/>
+        </a>
+    </div>
+    <div id="installinstructions">
+        <h5>How do I shop with I'll Pay?  It's easy...</h5>
+        <ul>
+            <li><a href="http://www.youtube.com/watch?v=Q7ZXXUKU8nE" target="_blank">Install I'll Pay on Google Chrome</a></li>
+            <li><a href="http://www.youtube.com/watch?v=4LN9JW31T08" target="_blank">Install I'll Pay on Mozilla Firefox</a></li>
+            <li><a href="http://www.youtube.com/watch?v=Tb0OUG6xExw" target="_blank">Install I'll Pay on Safari</a></li>
+        </ul>
+    </div>
+    <div>
+        <ul>
+            <li>Install the button in your browser's bookmark tab</li>
+            <li>Go to your favourite online store</li>
+            <li>Find an item you want to purchase</li>
+            <li>Click on the I'll Pay button you installed</li>
+            <li>Make your offer</li>
+        </ul>
+    </div>
+</div>
+<div class="container">
+        <div id="howitworks">
+            <div class="howitworks">
+                <div class="howitheading">
+                    <p>HOW IT WORKS<br/>
+                    FOR SHOPPERS</p>
+                </div>
+                <ol>
+                    <li><p>Drag this button <a class="topnav" title="Drag me onto your bookmarks bar to start making offers" href="javascript: void((function() {if(window.ipay_enabled){ipay_display();}else{var scr = document.createElement('script'); scr.setAttribute('src','//illpay.com.au/widgetty/newoffer-v0.2.php'); scr.setAttribute('type', 'text/javascript');scr.setAttribute('id','ipay_basic'); scr.setAttribute('charset', 'UTF-8'); document.body.appendChild(scr);}})())"><img alt="I'llpay" src="https://illpay.com.au/img/button-color2.png"/></a> to your bookmarks bar.</p></li>
+                    <li><p><img src="/img/trolley.png"/> Go shopping online at your favorite stores.</p></li>
+                    <li><p><img src="/img/magglass.png"/> Find a product that you want to buy.</p></li>
+                    <li><p><img src="/img/percent.png"/> Instead of adding to cart - make an offer.</p></li>
+                    <li><p><img src="/img/percent.png"/> Click the I'llPay button to make an offer.</p></li>
+                </ol>
+                <button class="howitsignup">SIGN UP</button>
+            </div>
+            <div class="howitworks">
+                <div class="howitheading">
+                    <p>HOW IT WORKS<br/>
+                    FOR RETAILERS</p>
+                </div>
+                <ol>
+                    <li><p><img src="/img/ret1.png"/> Stuck with old stock?  Want another way to generate cashflow?</p></li>
+                    <li><p><img src="/img/ret1.png"/> Create your Account.</p></li>
+                    <li><p><img src="/img/ret2.png"/> Receive Offers.</p></li>
+                    <li><p><img src="/img/ret3.png"/> Choose the Offers you want.</p></li>
+                    <li><p><img src="/img/ret4.png"/> Get more Sales.</p></li>
+                </ol>
+                <button class="howitsignup">SIGN UP</button>
+            </div>
+        </div>
+        <div id="lowerinfo">
+            <div>
+                <p>Register for Updates</p>
+                <form id="lowermailform">
+                    <input type="text" name="email"/><br/>
+                    <input type="submit" value="Submit"/>
+                </form>
+                <div class="halfborder"></div>
+            </div>
+            <div>
+                <p>Get the Mobile App!</p>
+                <p>Our mobile app is still in development, watch this space.</p>
+                <p>App by <img src="https://illpay.com.au/img/appstertransparent.png"/></p>
+                <div class="halfborder"></div>
+            </div>
+            <div>
+                <p>Video: What is <span class="ipaybluetext"><img src="img/illpaybluetext.png"/></span> ?</p>
+                <div id="introplayer"></div>
+            </div>
+            <div id="maillistsignup">
+                <form>
+                    <p style="font-size: 12pt;">Please enter your email address and name so that we can keep you up to date.</p>
+                    <p>Email: <input type="text" name="email"/></p>
+                    <p>First name: <input type="text" name="fname"/></p>
+                    <p>Last name: <input type="text" name="lname"/></p>
+                    <p><input type="submit" value="Submit"/></p>
+                </form>
+            </div>
+        </div>
+        
+    </div>
+    <noscript>
+    <div id="failscript">
+        <p>Oops!  It appears that your browser does not support javascript, or it is turned off.</p>
+        <p>Please enable javascript to use our site.</p>
+    </div>
+    </noscript>
+    <div class="loadingimage">
+        Loading,please wait
+    </div>
+</body>
+</html> 

@@ -1,0 +1,381 @@
+/* 
+    Document   : broadbrush
+    Created on : 17/01/2013, 12:59:03 PM
+    Author     : David
+    Description:
+        High level stylesheet for elements which span most or all of the site.
+*/
+
+root { 
+    display: block;
+}
+
+html {
+    height:100%;
+    overflow-x: hidden;
+}
+
+body
+{
+    font-family: 'Open Sans', Verdana, Arial, sans-serif;
+    min-height: 700px;
+    background-image: url('https://illpay.com.au/img/background1-bw.jpg');
+    background-repeat:no-repeat;
+    background-position:0px 130px;
+    background-size: 100% 500px;
+    background-color: #FFF;
+    height:100%;
+    margin:0px;
+}
+
+#container /*Div element which contains all page data*/
+{
+    color:#666;
+    
+    background-size: 100%; 
+    background-repeat: no-repeat; 
+    
+}
+
+.loadingimage{
+    position:fixed;
+    width:100px;
+    height:100px;
+    top:200px;
+    left:500px;
+    border:1px solid black;
+}
+
+/*Styles unique to a user's account page - buyer or vendor*/
+#maintext
+{
+width:90%;
+margin: 0 auto;
+display:inline;
+}
+
+#sidebar
+{
+width:18%;
+float:left;
+margin-top:30px;
+}
+
+#sidenav
+{
+width:90%;
+float:left;
+background-color:gray;
+border: 1px solid #999999;
+}
+
+a:link.sidenav {color:#FFFFFF;text-decoration:none;}
+a:visited.sidenav {color:#FFFFFF;text-decoration:none;}
+a:hover.sidenav{color:#FFFF00;text-decoration:none;}
+a:active.sidenav {color:#FFFFFF;text-decoration:none;}
+
+.summary{
+border-collapse: collapse;
+width:100%;
+float:left;
+border:1px solid #000000;
+clear:right;
+
+}
+th.summaryCell{
+    border-bottom: 1px solid black;
+    padding: .5em .5em;
+}
+td.summaryCell{
+    border-right: 1px solid black;
+    border-bottom:1px solid black;
+    text-align: center;
+    padding:2px 2px;
+}
+
+
+/* Styles unique to the top navigation bar */
+#topbar
+{
+    height:130px;
+    clear:both;
+    padding:0px;
+    position:relative;
+    display:inline-block;
+/*    background-image: url('//illpay.com.au/img/illpaytop.jpg');
+    background-position: left;
+    background-repeat: no-repeat;*/
+    background-color: #FFF
+}
+#topgreybit{
+    position:absolute;
+    height:50px;
+    width:100%;
+    background-color: #999;
+}
+#topinner{
+    z-index:2;
+    position:relative;
+    margin-left:auto;
+    margin-right:auto;
+    max-width:1100px;
+    min-width:800px;
+    background-image: url('../img/illpaylogosmallV3.jpg');
+    background-position: 5px 50px;
+/*    background-position-x: 5px;
+    background-position-y: 50px;*/
+    background-repeat: no-repeat;
+    height:130px;
+    background-size:auto 70px; 
+}
+.slogandiv{
+    position:absolute;
+    left:15px;
+    bottom:2px;
+    color:#333;
+    font-size: small;
+}
+#topnav
+{
+    position:absolute;
+    font-size:14pt;
+    padding-top:4px;
+    z-index:5;
+    top:50px;
+    right:150px;
+    height: 80px;
+}
+div.topnav{
+    font-size: 10pt;
+    float:left;
+    text-align:center;
+    margin: 0px 20px;
+    color: #999;
+    transition: color 0.2s linear;
+    cursor:pointer;
+    z-index: 50;
+    width:100px;
+}
+div.topnav:last-of-type{margin-right:0px;}
+div.topnav:hover{
+    color:#F00;
+}
+div.topnav img{
+    height:35px;
+}
+.topsocial{
+    position:absolute;
+    top:10px;
+    /*background-image: url('../img/socialtop3.png');*/
+    width:60px;
+    height:16px;
+    z-index:6;
+}
+.topsocial > img{
+    height:16px;
+    width:16px;
+    margin-right:4px;
+    float:left;
+}
+.topsocial > div{
+    z-index:8;
+    display:none;
+    top:-10px;
+    left: -150px;
+    position:relative;
+    width: 300px;
+    height:45px;
+    background-color: #999;
+    padding-top:5px;
+    
+}
+.topsocial div img{
+    height:40px;
+    margin: 0px 5px;
+}
+#toplogin
+{
+position:absolute;
+right:100px;
+top:10px;
+font-size:14pt;
+color:#FFF;
+}
+#toplogin span{
+    cursor:pointer;
+    color:#FFF;
+    transition:color 0.2s linear;
+}
+#toplogin span:hover{
+    color:#F00
+}
+
+
+#blanket{/*style the blank out box*/
+    display:none;
+    position:absolute; 
+    top:0; 
+    left:0; 
+    width:100%;
+    height:100%;
+    z-index:100;
+    background-color: #000000;
+}
+/*Styling for the dropdown login box*/
+#loginDrop
+{
+    display:none;
+    width:610px;
+    height:300px;
+    border:3px solid #999999;
+    background-color: #FFFFFF;
+    position:fixed;
+    top:200px;
+    padding:5% 3%;
+    color:#999;
+    z-index:200;
+}
+#ldroplogo{
+    width:90px;
+    height:33px;
+    position:absolute;
+    z-index:300;
+    top:5px;
+    left:5px;
+    background-image: url('../img/illpaylogosmallV3.jpg');
+    background-size:contain;
+    background-repeat: no-repeat;
+}
+#ldropxbutton{
+    width:15px;
+    height:15px;
+    position: absolute;
+    z-index:300;
+    border:1px solid #d4f5e6;
+    right:5px;
+    top:5px;
+    background-image: url('//illpay.com.au/img/closex.jpg');
+    cursor:pointer;
+}
+
+#sloginDrop{
+    float:left;
+}
+
+#vloginDrop{
+    float:right;
+    width:300px;
+}
+
+/*Styles for the dropdown registration box*/
+
+#regodrop {
+    display:block;
+    position: fixed;
+    top: 25px;
+    left: 50%;
+    width:10px;
+    font-family: 'Open Sans',Arial, Verdana, sans-serif;
+    z-index:149;
+}
+#regodrop1{
+    position: absolute;
+    width: 800px;
+    min-height: 250px;
+    left: -400px;
+    top: 10px;
+    display: none;
+    border: 1px solid black;
+    z-index: 150;
+    background-color: #0099CC;
+}
+/*Styles relating to the install our button bits*/
+#installbox{
+    display:none;
+    position:absolute;
+    z-index: 200;
+    border: 4px solid #999999;
+    width:600px;
+    height:300px;
+    background-color: #FFFFFF;
+}
+#installbutton{
+    position: relative;
+    width:150px;
+    margin:10px 10px 40px;
+}
+#installinstructions{
+    position:absolute;
+    top:10px;
+    right:10px;
+    width:400px;
+}
+#installinstructions li{
+    list-style-image:url(https://illpay.com.au/img/playli.gif); 
+}
+#installinstructions a:link,#installinstructions a:visited,#installinstructions a:active{
+    color:#000;
+    transition:all 0.2s linear;
+    text-decoration:none;
+    font-weight: normal;
+}
+#installinstructions a:hover{
+    color:#F00;
+    font-weight:bold;
+}
+
+
+/*styles for the bottom bar*/
+#bottombar 
+{
+    position:absolute;
+    left:0px;
+    display:inline-block;
+    font-family:'Open Sans',Verdana, Arial, sans-serif;
+    padding-right:10px;
+    background-color: #FFF;
+    margin: 0px;
+    padding:0px;
+    height: 80px;
+    bottom: 0px;
+    color:#999;
+}
+
+#bcopyright{
+    font-size: 8pt;
+    position: absolute;
+    top: 5px;
+    right: 10px;
+}
+#bsocial{
+    position: absolute;
+    bottom: 5px;
+    right: 10px;
+}
+#blinks{
+    margin-top: 5px;
+}
+a.botnav{
+    font-size:10pt;
+    font-family: 'Open Sans', arial,verdana,sans-serif;
+    transition:color 0.2s linear;
+    text-decoration: none;
+    color:#999;
+    font-weight: bold;
+}
+a.botnav:hover{
+    text-decoration: none;
+    color:#F00
+}
+a.botnav:active{
+    color:#999
+}
+
+a img{border:0;}
+
+.myusername {width:170px;}
+.mypassword {width:170px;}
+
+/*Styling for the drop down login / user status table*/
+
+/* Styles for the myaccount page moved to separate stylesheet */

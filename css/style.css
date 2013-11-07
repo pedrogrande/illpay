@@ -1,0 +1,66 @@
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 18px;
+  line-height: 1.428571429;
+  color: #333333;
+  background-color: #ffffff;
+}
+.navbar {
+  margin-bottom: 5px;
+}
+.navbar-default {
+  background-color: #999999;
+  border-color: #888;
+}
+.navbar-default .navbar-nav > li > a {
+  color: #FFF;
+}
+.pill-image {
+	height: 36px;
+}
+.logo {
+	padding-top: 
+}
+.main-section {
+	background-image: url('../img/background1-bw.jpg');
+    background-repeat:no-repeat;
+    background-size: 100% 500px;
+}
+.shopper h2 {
+	color: #5cb85c;
+	font-size: 42px;
+	text-shadow: 1px 1px 0 #ddd;
+}
+.shopper small {
+	color: #5cb85c;
+	text-shadow: 1px 1px 0 #ddd;
+}
+.retailer h2 {
+	color: #428bca;
+	font-size: 42px;
+	text-shadow: 1px 1px 0 #357ebd;
+}
+.retailer small {
+	color: #428bca;
+	text-shadow: 1px 1px 0 #357ebd;
+}
+.shopper, .retailer {
+	color: white;
+	padding: 50px 0;
+	font-size: 20px;
+}
+.list-logo {
+	height: 30px;
+}
+.shopper-icons {
+	color: #5cb85c;
+	text-shadow: 1px 1px 0 #ddd;
+}
+.retailer-icons {
+	color: #428bca;
+	text-shadow: 1px 1px 0 #357ebd;
+}
+.panel {
+  margin-bottom: 20px;
+  background-color:rgba(255,255,255,0.4);
+  }
